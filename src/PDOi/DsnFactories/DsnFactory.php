@@ -3,15 +3,27 @@ namespace Kir\PDOi\DsnFactories;
 
 abstract class DsnFactory {
 	/**
-	 * @param array $params
+	 * @param string $uri
 	 * @param array $options
 	 * @return string
 	 */
-	public function getDsn(array $params = array(), array $options = array()) {
+	public function getDsn($uri, array $options = array()) {
+		$params = $this->parseDsnString($uri);
 		$params = $this->getDefaults($params);
 		$dsnParams = $this->defineDsnParams($params);
 		$dsn = $this->buildDsnString($params['scheme'], $dsnParams);
 		return $this->buildDsn($dsn, $params, $options);
+	}
+
+	/**
+	 * @param string $uri
+	 * @return string
+	 */
+	public function parseDsnString($uri) {
+		$uriParts = parse_url($uri);
+		$uriParts = array_merge(array('scheme' => '???', 'query' => ''), $uriParts);
+		parse_str($uriParts['query'], $uriParts['query']);
+		return $uriParts;
 	}
 
 	/**
