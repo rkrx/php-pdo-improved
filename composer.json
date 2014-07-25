@@ -1,0 +1,24 @@
+{
+	"name": "rkr/php-pdo-improved",
+	"description": "Wrapper for PDO to improve PDO in some ways",
+	"homepage": "https://github.com/rkrx/php-pdo-improved",
+	"license": "MIT",
+	"type": "library",
+	"minimum-stability": "stable",
+	"authors": [{
+		"name": "Ron Kirschler",
+		"email": "ron.kirschler@gmail.com"
+	}],
+	"require": {
+		"php": ">= 5.3.6",
+		"rkr/php-array-utils": "0.0.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kir\\": "src/"
+		}
+	},
+	"repositories": [{
+		"type": "vcs", "url": "https://github.com/rkrx/php-array-utils"
+	}]
+}
